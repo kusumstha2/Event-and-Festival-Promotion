@@ -42,7 +42,7 @@ class User(AbstractUser):
 
    
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ['name']
+    REQUIRED_FIELDS = []
     objects = UserManager()
 
     def save(self, *args, **kwargs):

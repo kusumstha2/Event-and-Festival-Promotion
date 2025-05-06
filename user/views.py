@@ -1,9 +1,11 @@
-from rest_framework import viewsets
-from .models import User
-from .serializers import UserSerializer
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from .serializers import CustomUserCreateSerializer
+from Eventmain.ResponseFunction import *
+from djoser.views import UserViewSet
+from .models import *
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [IsAdminUser]  
+
+class CustomUserViewSet(UserViewSet):
+    def get_serializer_class(self):
+        if self.action == "create":  # Ensure custom serializer is used for registration
+            return CustomUserCreateSerializer
+        return super().get_serializer_class()

@@ -15,5 +15,5 @@ router.register(r'analytics', EventAnalyticsViewSet)
 router.register(r'reviews', EventReviewViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]

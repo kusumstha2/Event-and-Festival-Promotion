@@ -1,17 +1,12 @@
 from rest_framework import serializers
-from django.contrib.auth.models import Group
-from .models import User
+from django.contrib.auth import get_user_model
+from .models import *
+from djoser.serializers import UserCreateSerializer
 
-class GroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Group
-        fields = ['id', 'name']
+# User = get_user_model()
 
-class UserSerializer(serializers.ModelSerializer):
-    role = GroupSerializer(read_only=True)
-    role_id = serializers.PrimaryKeyRelatedField(queryset=Group.objects.all(), write_only=True, source='role')
-
-    class Meta:
-        model = User
-        fields = ['id', 'name', 'email', 'role', 'role_id', 'language', 'created_at']
-        read_only_fields = ['created_at']
+class CustomUserCreateSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        model = get_user_model()
+        fields = ('id', 'name', 'email', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
