@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'Eventmain',
     'user',
+    'firebase',
 ]
 
 MIDDLEWARE = [
@@ -63,10 +64,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "event_project.urls"
 
+FIREBASE_CONFIG = os.getenv('FIREBASE_CONFIG')
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

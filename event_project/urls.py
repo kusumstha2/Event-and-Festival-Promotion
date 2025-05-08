@@ -22,6 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('',include('Eventmain.urls')),
     path('user/',include('user.urls')),
+    path('',include('firebase.urls')),
     
     path('auth/', include('djoser.urls')),
     path("auth/", include("djoser.urls.authtoken")),
