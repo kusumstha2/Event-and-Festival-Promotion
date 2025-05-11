@@ -1,17 +1,21 @@
 from rest_framework import serializers
 from .models import *
 
+# serializers.py
 class OrganizerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Organizer
         fields = '__all__'
 
+    def validate(self, data):
+        # You can optionally add checks here
+        return data
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
-
+    read_only_fields = ['organizer'] 
 
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
