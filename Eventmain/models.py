@@ -24,7 +24,6 @@ class Organizer(models.Model):
         null=True,
         blank=True,
         related_name='verified_organizers',
-        limit_choices_to={'role': 'admin'}
     )
 
     def __str__(self):
